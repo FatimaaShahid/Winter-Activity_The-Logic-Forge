@@ -14,5 +14,6 @@ def finding_impact(contributions):
         impact[i] *= after
         after *= contributions[i]
     return impact
-print(finding_impact([1, 2, 3, 4]))  
-print(finding_impact([-1, 1, 0, -3, 3]))  
+print("Challenge 1: Team Contribution Multiplier")
+print("Input : [1, 2, 3, 4] Output :" , finding_impact([1, 2, 3, 4]))  
+print("Input : [-1, 1, 0, -3, 3] Output :" , finding_impact([-1, 1, 0, -3, 3]))  

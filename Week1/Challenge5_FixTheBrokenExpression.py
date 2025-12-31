@@ -46,4 +46,8 @@ class Solution:
             self.dfs(string, idx + 1, cur_res, open_cnt, close_cnt)
             cur_res.pop()
 
-print(Solution().removeInvalidParentheses("()())()"))
+print(Solution().removeInvalidParentheses("(a)())()"))
+print(Solution().removeInvalidParentheses(")("))
+print(Solution().removeInvalidParentheses("()"))
+print(Solution().removeInvalidParentheses("abc"))
+print(Solution().removeInvalidParentheses("((("))

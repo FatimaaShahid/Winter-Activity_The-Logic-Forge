@@ -28,4 +28,6 @@ def minWindow(log, pattern):
             left += 1
 
     return "" if min_len_found == float('inf') else log[min_len_left_index:min_len_left_index + min_len_found]
-print(minWindow("ADOBECODEBANC", "ABC"))
+print("Output 1:", minWindow("ADOBECODEBANC", "ABC"))
+print("Output 2:", minWindow("a", "a"))
+print("Output 3:", minWindow("a", "aa"))
