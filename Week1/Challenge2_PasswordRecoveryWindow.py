@@ -1,26 +1,31 @@
-from collections import Counter
 
 def minWindow(log, pattern):
-    curr = log + " "
-    pattern_count = Counter(pattern)
+    if not log or not pattern or len(log) < len(pattern):
+        return ""
+    characters = [0]*128
+    min_len_found = float('inf')
+    left = 0
+    right = 0
+    missing_letters = len(pattern)
+    min_len_left_index = 0
 
-    for i in range(len(log)):
-        substr_post = Counter(log[i:])
-        substr_pre = Counter(log[:i+1])
-        found_pre = True
-        found_post = True
+    for char in pattern:
+        characters[ord(char)] += 1
+    while right<len(log):
+        if characters[ord(log[right])] > 0:
+            missing_letters -= 1
+        characters[ord(log[right])] -=1
+        right += 1
 
-        for ch in pattern_count:
-            if substr_pre[ch] < pattern_count[ch]:
-                found_pre = False
-            if substr_post[ch] < pattern_count[ch]:
-                found_post = False
-            if not found_post and not found_pre:
-                break
+        while missing_letters == 0:
+            if right - left < min_len_found:
+                min_len_left_index = left
+                min_len_found = right - left
 
-        if found_post and len(log[i:]) < len(curr):
-            curr = log[i:]
-        if found_pre and len(log[:i+1]) < len(curr):
-            curr = log[:i+1]
+            if characters[ord(log[left])] == 0:
+                missing_letters += 1
+            characters[ord(log[left])] += 1
+            left += 1
 
-    return "" if curr == log + " " else curr
+    return "" if min_len_found == float('inf') else log[min_len_left_index:min_len_left_index + min_len_found]
+print(minWindow("ADOBECODEBANC", "ABC"))
